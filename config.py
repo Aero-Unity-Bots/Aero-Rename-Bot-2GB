@@ -25,7 +25,7 @@ class Config:
     MONGO_URI = os.getenv("MONGO_URI")
 
     # ---------------- CHANNELS ---------------- #
-    _raw_update = os.getenv("UPDATE_CHANNEL", "https://t.me/Anime_UpdatesAU")
+    _raw_update = os.getenv("UPDATE_CHANNEL", "https://t.me/Aero_Unity")
 
     if _raw_update.startswith("@"):
         UPDATE_CHANNEL = "https://t.me/" + _raw_update[1:]
