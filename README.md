@@ -13,7 +13,7 @@
   <a href="https://t.me/Mr_Mohammed_29" target="_blank">
     <img src="https://img.shields.io/badge/Developer-Mohammed-purple?style=for-the-badge&logo=telegram&logoColor=white" alt="Developer"/>
   </a>
-  <a href="https://t.me/AU_Bot_Discussion" target="_blank">
+  <a href="https://t.me/Aero_Unity" target="_blank">
     <img src="https://img.shields.io/badge/Support-Group-blueviolet?style=for-the-badge&logo=telegram&logoColor=white" alt="Support Group"/>
   </a>
 </p>
@@ -184,7 +184,7 @@ After adding monitor click:
 ═★═★═★═ **🏆 Credits** ═★═★═★═  
 
 - Developer: <a href="https://t.me/Mr_Mohammed_29"><b>ᴍᴏʜᴀᴍᴍᴇᴅ</b></a>  
-- Framework: <a href="https://docs.pyrogram.org/"><b>ᴘʏʀᴏɢʀᴀᴍ</b></a>  
+- Updates: <a href="https://t.me/Aero_Unity"><b>ᴀᴇʀᴏ ᴜɴɪᴛʏ</b></a>  
 
 ---
 
