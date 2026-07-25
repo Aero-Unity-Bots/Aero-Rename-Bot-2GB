@@ -834,7 +834,7 @@ CACHE_IMAGE = "AgACAgUAAxkBAAIIKWpkplYpU5a_UBqHrSpQobbbB1stAALiEmsbLWYoVxa6s_FPQ
 # FEEDBACK
 # ==========================================
 
-@Client.on_message(filters.command("feedback") & filters.private)
+@bot.on_message(filters.command("feedback") & filters.private)
 async def feedback_cmd(client, message):
 
     keyboard = InlineKeyboardMarkup(
@@ -875,7 +875,7 @@ async def feedback_cmd(client, message):
 # CLOSE FEEDBACK
 # ==========================================
 
-@Client.on_callback_query(filters.regex("^close_feedback$"))
+@bot.on_callback_query(filters.regex("^close_feedback$"))
 async def close_feedback(client, query):
 
     await query.answer()
@@ -894,7 +894,7 @@ async def close_feedback(client, query):
 # DATABASE SIZE
 # ==========================================
 
-@Client.on_message(filters.command("dbsize") & filters.private)
+@bot.on_message(filters.command("dbsize") & filters.private)
 async def dbsize_cmd(client, message):
 
     if message.from_user.id != OWNER_ID:
@@ -966,7 +966,7 @@ async def dbsize_cmd(client, message):
 # CLOSE DBSIZE
 # ==========================================
 
-@Client.on_callback_query(filters.regex("^close_dbsize$"))
+@bot.on_callback_query(filters.regex("^close_dbsize$"))
 async def close_dbsize(client, query):
 
     await query.answer()
@@ -985,7 +985,7 @@ async def close_dbsize(client, query):
 # CLEAR CACHE
 # ==========================================
 
-@Client.on_message(filters.command("clearcache") & filters.private)
+@bot.on_message(filters.command("clearcache") & filters.private)
 async def clearcache_cmd(client, message):
 
     if message.from_user.id != OWNER_ID:
@@ -1040,7 +1040,7 @@ async def clearcache_cmd(client, message):
 # CLOSE CACHE
 # ==========================================
 
-@Client.on_callback_query(filters.regex("^close_cache$"))
+@bot.on_callback_query(filters.regex("^close_cache$"))
 async def close_cache(client, query):
 
     await query.answer()
@@ -1059,7 +1059,7 @@ async def close_cache(client, query):
 # MAINTENANCE COMMAND
 # ==========================================
 
-@Client.on_message(filters.command("maintenance") & filters.private)
+@bot.on_message(filters.command("maintenance") & filters.private)
 async def maintenance_cmd(client, message):
 
     if message.from_user.id != OWNER_ID:
@@ -1123,7 +1123,7 @@ async def maintenance_cmd(client, message):
 # BLOCK USERS DURING MAINTENANCE
 # ==========================================
 
-@Client.on_message(filters.private, group=-100)
+@bot.on_message(filters.private, group=-100)
 async def maintenance_checker(client, message):
 
     if message.from_user.id == OWNER_ID:
