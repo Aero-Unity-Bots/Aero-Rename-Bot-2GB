@@ -90,48 +90,52 @@
 ## ✨ Commands
 
 ```txt
-start - arise the bot
-alive - 𝖈ʜᴇᴄᴋ 𝖎 𝖆ᴍ ʟɪᴠᴇ or not
+start - ᴀʀɪsᴇ ᴛʜᴇ ʙᴏᴛ
+alive - 𝖈ʜᴇᴄᴋ 𝖎 𝖆ᴍ ʟɪᴠᴇ ᴏʀ ɴᴏᴛ
 privacy - ᴠɪᴇᴡ ᴘʀɪᴠᴀᴄʏ ᴘᴏʟɪᴄʏ
 cancel - ᴛᴏ ᴄʟᴇᴀʀ ᴛᴀsᴋs
 ub - sᴇᴛ ʙᴏᴛ ᴛᴏᴋᴇɴ ғᴏʀ ᴜᴘʟᴏᴀᴅɪɴɢ
-set_caption - sᴇᴛ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ.
-see_caption - ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴀᴘᴛɪᴏɴ.
-del_caption - ᴅᴇʟᴇᴛᴇ ᴄᴀᴘᴛɪᴏɴ.
-set_prefix - sᴇᴛ ᴘʀᴇғɪx.
-see_prefix - ᴠɪᴇᴡ ᴘʀᴇғɪx.
-del_prefix - ᴅᴇʟᴇᴛᴇ ᴘʀᴇғɪx.
-set_suffix - sᴇᴛ sᴜғғɪx.
-see_suffix - ᴠɪᴇᴡ sᴜғғɪx.
-del_suffix - ᴅᴇʟᴇᴛᴇ sᴜғғɪx.
-metadata - sᴇᴛ ᴠɪᴅᴇᴏ/ᴀᴜᴅɪᴏ ᴍᴇᴛᴀᴅᴀᴛᴀ.
-see_metadata - ᴛᴏ sᴇᴇ ʏᴏᴜʀ ᴄᴜsᴛᴏᴍ ᴍᴇᴛᴀᴅᴀᴛᴀ
-renamed - ᴛᴏ ᴠɪᴇᴡ ʏᴏᴜʀ ʀᴇɴᴀᴍᴇᴅ sᴛᴀᴛs
-view_thumb - ᴠɪᴇᴡ ᴛʜᴜᴍʙɴᴀɪʟ.
-del_thumb - ᴅᴇʟᴇᴛᴇ ᴛʜᴜᴍʙɴᴀɪʟ.
-setdump - sᴇᴛ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ.
-chkdump - ᴄʜᴇᴄᴋ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ.
-deldump - ᴅᴇʟᴇᴛᴇ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ.
-leaderboard - Sʜᴏᴡ ᴛᴏᴘ ᴜsᴇʀs
-info - Sʜᴏᴡ ᴜsᴇʀ ɪɴғᴏ
-tts - Cᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ
-qrcode - Gᴇɴᴇʀᴀᴛᴇ QR Cᴏᴅᴇ
-wwather - Cʜᴇᴄᴋ ᴡᴇᴀᴛʜᴇʀ
-datetime - Sʜᴏᴡ ᴄᴜʀʀᴇɴᴛ ᴅᴀᴛᴇ & ᴛɪᴍᴇ
-text2gif - Cᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ɪɴᴛᴏ GIF
-imagine - Gᴇɴᴇʀᴀᴛᴇ AI ɪᴍᴀɢᴇ
-donate - Dᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
+set_caption - sᴇᴛ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ
+see_caption - ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴀᴘᴛɪᴏɴ
+del_caption - ᴅᴇʟᴇᴛᴇ ᴄᴀᴘᴛɪᴏɴ
+set_prefix - sᴇᴛ ᴘʀᴇғɪx
+see_prefix - ᴠɪᴇᴡ ᴘʀᴇғɪx
+del_prefix - ᴅᴇʟᴇᴛᴇ ᴘʀᴇғɪx
+set_suffix - sᴇᴛ sᴜғғɪx
+see_suffix - ᴠɪᴇᴡ sᴜғғɪx
+del_suffix - ᴅᴇʟᴇᴛᴇ sᴜғғɪx
+metadata - sᴇᴛ ᴠɪᴅᴇᴏ/ᴀᴜᴅɪᴏ ᴍᴇᴛᴀᴅᴀᴛᴀ
+see_metadata - ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴜsᴛᴏᴍ ᴍᴇᴛᴀᴅᴀᴛᴀ
+renamed - ᴠɪᴇᴡ ʏᴏᴜʀ ʀᴇɴᴀᴍᴇᴅ sᴛᴀᴛs
+view_thumb - ᴠɪᴇᴡ ᴛʜᴜᴍʙɴᴀɪʟ
+del_thumb - ᴅᴇʟᴇᴛᴇ ᴛʜᴜᴍʙɴᴀɪʟ
+setdump - sᴇᴛ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ
+chkdump - ᴄʜᴇᴄᴋ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ
+deldump - ᴅᴇʟᴇᴛᴇ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ
+leaderboard - sʜᴏᴡ ᴛᴏᴘ ᴜsᴇʀs
+info - sʜᴏᴡ ᴜsᴇʀ ɪɴғᴏ
+tts - ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ
+qrcode - ɢᴇɴᴇʀᴀᴛᴇ QR ᴄᴏᴅᴇ
+weather - ᴄʜᴇᴄᴋ ᴡᴇᴀᴛʜᴇʀ
+datetime - sʜᴏᴡ ᴄᴜʀʀᴇɴᴛ ᴅᴀᴛᴇ & ᴛɪᴍᴇ
+text2gif - ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ɪɴᴛᴏ GIF
+imagine - ɢᴇɴᴇʀᴀᴛᴇ AI ɪᴍᴀɢᴇ
+feedback - sᴇɴᴅ ғᴇᴇᴅʙᴀᴄᴋ ᴏʀ ʀᴇᴘᴏʀᴛ ᴀ ʙᴜɢ
+donate - ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
 stats - ᴄʜᴇᴄᴋ ᴅᴇᴛᴀɪʟᴇᴅ ʙᴏᴛ sᴛᴀᴛɪsᴛɪᴄs
 addedbots - ᴠɪᴇᴡ ᴀᴅᴅᴇᴅ ʙᴏᴛs ʟɪsᴛ [Oᴡɴᴇʀ Oɴʟʏ]
-fsub - Aᴅᴅ Fᴏʀᴄᴇ Sᴜʙsᴄʀɪʙᴇ Cʜᴀɴɴᴇʟ [Oᴡɴᴇʀ Oɴʟʏ]
-nofsub - Rᴇᴍᴏᴠᴇ Fᴏʀᴄᴇ Sᴜʙsᴄʀɪʙᴇ Cʜᴀɴɴᴇʟ [Oᴡɴᴇʀ Oɴʟʏ]
-freemode - Eɴᴀʙʟᴇ Fʀᴇᴇ Mᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
-disablemode - Dɪsᴀʙʟᴇ Bᴏᴛ Mᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
+fsub - ᴀᴅᴅ ғᴏʀᴄᴇ sᴜʙsᴄʀɪʙᴇ ᴄʜᴀɴɴᴇʟ [Oᴡɴᴇʀ Oɴʟʏ]
+nofsub - ʀᴇᴍᴏᴠᴇ ғᴏʀᴄᴇ sᴜʙsᴄʀɪʙᴇ ᴄʜᴀɴɴᴇʟ [Oᴡɴᴇʀ Oɴʟʏ]
+freemode - ᴇɴᴀʙʟᴇ ғʀᴇᴇ ᴍᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
+disablemode - ᴅɪsᴀʙʟᴇ ʙᴏᴛ ᴍᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
 ban - ʙᴀɴ ᴜsᴇʀ [Oᴡɴᴇʀ Oɴʟʏ]
 unban - ᴜɴʙᴀɴ ᴜsᴇʀ [Oᴡɴᴇʀ Oɴʟʏ]
 status - ᴄʜᴇᴄᴋ ʙᴏᴛ sᴛᴀᴛᴜs [Oᴡɴᴇʀ Oɴʟʏ]
-logs - ᴠɪᴇᴡ ʙᴏᴛ ʟᴏɢs (ᴀᴅᴍɪɴ).
+logs - ᴠɪᴇᴡ ʙᴏᴛ ʟᴏɢs [Oᴡɴᴇʀ Oɴʟʏ]
 broadcast - sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ᴜsᴇʀs [Oᴡɴᴇʀ Oɴʟʏ]
+dbsize - ᴠɪᴇᴡ ᴅᴀᴛᴀʙᴀsᴇ sɪᴢᴇ & sᴛᴀᴛs [Oᴡɴᴇʀ Oɴʟʏ]
+clearcache - ᴄʟᴇᴀʀ ʙᴏᴛ ᴄᴀᴄʜᴇ [Oᴡɴᴇʀ Oɴʟʏ]
+maintenance - ᴇɴᴀʙʟᴇ / ᴅɪsᴀʙʟᴇ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
 ```
 
 <details>
