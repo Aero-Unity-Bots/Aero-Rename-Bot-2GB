@@ -4,7 +4,7 @@
 # Owner @Mr_Mohammed_29
 # ------------------------- #
 
-from pyrogram import filters
+from pyrogram import filters, StopPropagation
 from pyrogram.enums import ParseMode
 from gtts import gTTS
 from urllib.parse import quote
@@ -1098,7 +1098,7 @@ async def maintenance_cmd(client, message):
         await message.reply_text(
             f"""✅ <b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Eɴᴀʙʟᴇᴅ</b>
 
-📝 <b>Rᴇᴀsᴏɴ/b> : <code>{reason}</code>"""
+📝 <b>Rᴇᴀsᴏɴ</b> : <code>{reason}</code>"""
         )
 
     elif mode == "off":
@@ -1122,8 +1122,6 @@ async def maintenance_cmd(client, message):
 # ==========================================
 # BLOCK USERS DURING MAINTENANCE
 # ==========================================
-
-from pyrogram import StopPropagation
 
 @Client.on_message(filters.private, group=-100)
 async def maintenance_checker(client, message):
