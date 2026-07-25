@@ -25,50 +25,50 @@
 
 ✨ Features
 
-📂 Rename files with custom filenames
-🎬 Upload as Video or Document mode
-📝 Custom caption support
-🖼️ Custom thumbnail support
-🔖 Custom prefix & suffix support
-🏷️ Advanced metadata editing
-🤖 Multi Upload Bot Support ("/ub")
-📥 Real-time download progress
-📤 Real-time upload progress
-📦 Personal dump channel support
-🔒 Force subscribe system
-🚫 User ban & unban system
-📢 Broadcast messages to all users
-📊 Live bot status monitoring
-📋 Live Added Bots list
-📈 User leaderboard system
-👤 Detailed user information
-❌ Task cancellation support
-💾 MongoDB database integration
-⚡ Fast and reliable processing
-📜 Bot activity logging
-🎊 Alive Bot Checker
-🧹 Cache cleaning system
-📊 Database statistics (/dbsize)
-🛠️ Maintenance mode
-💬 Feedback system
-🕒 World date & time command
-🎙️ Text to Speech (TTS)
-📱 QR Code Generator
-🎞️ Text to GIF Generator
-🎨 AI Image Generator
-📡 Auto reconnect system
-🔄 Auto retry on failed uploads
-🧠 Smart file processing
-📂 Duplicate file detection
-📌 Permanent thumbnail storage
-📝 Auto filename cleanup
-🛡️ FloodWait protection
-🔐 Secure owner-only admin commands
-📡 Render 24/7 deployment ready
-🐍 Built with Python + Pyrogram
-🗄️ MongoDB powered storage
-📁 Supports files up to 2GB
-🚀 High-speed processing
+- 📂 Rename files with custom filenames
+- 🎬 Upload as Video or Document mode
+- 📝 Custom caption support
+- 🖼️ Custom thumbnail support
+- 🔖 Custom prefix & suffix support
+- 🏷️ Advanced metadata editing
+- 🤖 Multi Upload Bot Support ("/ub")
+- 📥 Real-time download progress
+- 📤 Real-time upload progress
+- 📦 Personal dump channel support
+- 🔒 Force subscribe system
+- 🚫 User ban & unban system
+- 📢 Broadcast messages to all users
+- 📊 Live bot status monitoring
+- 📋 Live Added Bots list
+- 📈 User leaderboard system
+- 👤 Detailed user information
+- ❌ Task cancellation support
+- 💾 MongoDB database integration
+- ⚡ Fast and reliable processing
+- 📜 Bot activity logging
+- 🎊 Alive Bot Checker
+- 🧹 Cache cleaning system
+- 📊 Database statistics (/dbsize)
+- 🛠️ Maintenance mode
+- 💬 Feedback system
+- 🕒 World date & time command
+- 🎙️ Text to Speech (TTS)
+- 📱 QR Code Generator
+- 🎞️ Text to GIF Generator
+- 🎨 AI Image Generator
+- 📡 Auto reconnect system
+- 🔄 Auto retry on failed uploads
+- 🧠 Smart file processing
+- 📂 Duplicate file detection
+- 📌 Permanent thumbnail storage
+- 📝 Auto filename cleanup
+- 🛡️ FloodWait protection
+- 🔐 Secure owner-only admin commands
+- 📡 Render 24/7 deployment ready
+- 🐍 Built with Python + Pyrogram
+- 🗄️ MongoDB powered storage
+- 📁 Supports files up to 2GB
+- 🚀 High-speed processing
 
 <details>
 
