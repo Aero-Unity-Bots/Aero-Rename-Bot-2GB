@@ -4,7 +4,7 @@
 # Owner @Mr_Mohammed_29
 # ------------------------- #
 
-from pyrogram import filters, StopPropagation
+from pyrogram import Client, filters, StopPropagation
 from pyrogram.enums import ParseMode
 from gtts import gTTS
 from urllib.parse import quote
@@ -23,6 +23,18 @@ MAINTENANCE = {
     "enabled": False,
     "reason": "No reason provided"
 }
+
+# ==============================
+# ADMIN VARIABLES
+# ==============================
+
+BOT_START = datetime.now()
+
+CACHE = {}
+
+FEEDBACK_IMAGE = "https://graph.org/file/ac5e24a6243bfbbbecca2-7210d817a7005a0f56.jpg"
+DB_IMAGE = "https://graph.org/file/faf795187aa693e1024a4-746b376c8dcc889d4f.jpg"
+CACHE_IMAGE = "https://graph.org/file/a49a09e10235fc020e604-289b1b02951a23f44b.jpg"
 
 # ------------------------- #
 # Don't Remove Credit 
@@ -808,339 +820,317 @@ def register_tools(bot):
 # Owner @Mr_Mohammed_29
 # ------------------------- #
 
-# ==============================
-# ADMIN VARIABLES
-# ==============================
+    # ==========================================
+    # FEEDBACK
+    # ==========================================
 
-BOT_START = datetime.now()
-
-MAINTENANCE = {
-    "enabled": False,
-    "reason": "No reason provided"
-}
-
-CACHE = {}
-
-FEEDBACK_IMAGE = "AgACAgUAAxkBAAIIJWpkpe5UpvGcZmxr7jt8ePUiMxtOAALfEmsbLWYoV7A2LeHhtpDzAAgBAAMCAAN5AAceBA"
-DB_IMAGE = "AgACAgUAAxkBAAIIJ2pkpfNjjv_SFD0EjkDkFAwa_SpqAALgEmsbLWYoV4Em2ATqOrmwAAgBAAMCAAN5AAceBA"
-CACHE_IMAGE = "AgACAgUAAxkBAAIIKWpkplYpU5a_UBqHrSpQobbbB1stAALiEmsbLWYoVxa6s_FPQ03qAAgBAAMCAAN4AAceBA"
-
-# ------------------------- #
-# Don't Remove Credit 
-# Owner @Mr_Mohammed_29
-# ------------------------- #
-
-# ==========================================
-# FEEDBACK
-# ==========================================
-
-@bot.on_message(filters.command("feedback") & filters.private)
-async def feedback_cmd(client, message):
-
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    "• Cᴏɴᴛᴀᴄᴛ Oᴡɴᴇʀ •",
-                    url="https://t.me/Mr_Mohammed_29"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "• ᴄʟᴏsᴇ •",
-                    callback_data="close_feedback"
-                )
-            ]
-        ]
-    )
-
-    await message.reply_photo(
-        photo=FEEDBACK_IMAGE,
-        caption=(
-            "**Aɴʏ Fᴇᴇᴅʙᴀᴄᴋ**\n\n"
-            "**- Fᴏᴜɴᴅ A Bᴜɢ?**\n"
-            "**- Hᴀᴠᴇ A Sᴜɢɢᴇsᴛɪᴏɴ?**\n"
-            "**- Nᴇᴇᴅ ʜᴇʟᴘ?**\n\n"
-            "ᴄʟɪᴄᴋ **Contact Owner** Bᴇʟᴏᴡ."
-        ),
-        reply_markup=keyboard
-    )
-
-# ------------------------- #
-# Don't Remove Credit 
-# Owner @Mr_Mohammed_29
-# ------------------------- #
-
-# ==========================================
-# CLOSE FEEDBACK
-# ==========================================
-
-@bot.on_callback_query(filters.regex("^close_feedback$"))
-async def close_feedback(client, query):
-
-    await query.answer()
-
-    try:
-        await query.message.delete()
-    except:
-        pass
-
-# ------------------------- #
-# Don't Remove Credit 
-# Owner @Mr_Mohammed_29
-# ------------------------- #
-
-# ==========================================
-# DATABASE SIZE
-# ==========================================
-
-@bot.on_message(filters.command("dbsize") & filters.private)
-async def dbsize_cmd(client, message):
-
-    if message.from_user.id != OWNER_ID:
-        return await message.reply_text(
-            "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>",
-            quote=True
-        )
-
-    try:
-        total_users = await users.count_documents({})
-
-        renamed_users = await users.count_documents(
-            {"rename_count": {"$gt": 0}}
-        )
-
-        total_renames = 0
-
-        async for user in users.find({}, {"rename_count": 1}):
-            total_renames += user.get("rename_count", 0)
-
-        try:
-            stats = await db.command("dbStats")
-            db_used = round(stats["dataSize"] / (1024 * 1024), 2)
-            collections = stats["collections"]
-        except:
-            db_used = 0
-            collections = 0
-
-        cache_entries = len(CACHE)
-
-        text = (
-            "📊 <b>Dᴀᴛᴀʙᴀsᴇ Sᴛᴀᴛɪsᴛɪᴄs</b>\n\n"
-            f"👥 <b>Tᴏᴛᴀʟ Usᴇʀs</b> : <code>{total_users}</code>\n"
-            f"🎬 <b>Usᴇʀs Rᴇɴᴀᴍᴇᴅ</b> : <code>{renamed_users}</code>\n"
-            f"📁 <b>Tᴏᴛᴀʟ Rᴇɴᴀᴍᴇs</b> : <code>{total_renames}</code>\n"
-            f"💾 <b>Dᴀᴛᴀʙᴀsᴇ Usᴇᴅ</b> : <code>{db_used:.2f} MB</code>\n"
-            f"🗂 <b>Cᴏʟʟᴇᴄᴛɪᴏɴs</b> : <code>{collections}</code>\n"
-            f"⚡ <b>Cᴀᴄʜᴇ Eɴᴛʀɪᴇs</b> : <code>{cache_entries}</code>\n"
-            f"🕒 <b>Lᴀsᴛ Uᴘᴅᴀᴛᴇᴅ</b> : "
-            f"<code>{datetime.now().strftime('%d-%m-%Y %I:%M %p')}</code>"
-        )
+    @bot.on_message(filters.command("feedback") & filters.private)
+    async def feedback_cmd(client, message):
 
         keyboard = InlineKeyboardMarkup(
             [
-                [
+                 [
+                    InlineKeyboardButton(
+                        "• Cᴏɴᴛᴀᴄᴛ Oᴡɴᴇʀ •",
+                        url="https://t.me/Mr_Mohammed_29"
+                    )
+                 ],
+                 [
                     InlineKeyboardButton(
                         "• ᴄʟᴏsᴇ •",
-                        callback_data="close_dbsize"
+                        callback_data="close_feedback"
                     )
-                ]
+                 ]
             ]
         )
 
         await message.reply_photo(
-            photo=DB_IMAGE,
-            caption=text,
-            reply_markup=keyboard
-        )
-
-    except Exception as e:
-        await message.reply_text(str(e))
-
-# ------------------------- #
-# Don't Remove Credit 
-# Owner @Mr_Mohammed_29
-# ------------------------- #
-
-# ==========================================
-# CLOSE DBSIZE
-# ==========================================
-
-@bot.on_callback_query(filters.regex("^close_dbsize$"))
-async def close_dbsize(client, query):
-
-    await query.answer()
-
-    try:
-        await query.message.delete()
-    except:
-        pass
-
-# ------------------------- #
-# Don't Remove Credit 
-# Owner @Mr_Mohammed_29
-# ------------------------- #
-
-# ==========================================
-# CLEAR CACHE
-# ==========================================
-
-@bot.on_message(filters.command("clearcache") & filters.private)
-async def clearcache_cmd(client, message):
-
-    if message.from_user.id != OWNER_ID:
-        return await message.reply_text(
-            "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>",
-            quote=True
-        )
-
-    try:
-        global LAST_CACHE_CLEAR
-
-        cache_before = len(CACHE)
-
-        last_clear = LAST_CACHE_CLEAR
-
-        CACHE.clear()
-
-        LAST_CACHE_CLEAR = datetime.now().strftime("%d-%m-%Y %I:%M %p")
-
-        keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "• ᴄʟᴏsᴇ •",
-                        callback_data="close_cache"
-                    )
-                ]
-            ]
-        )
-
-        await message.reply_photo(
-            photo=CACHE_IMAGE,
+            photo=FEEDBACK_IMAGE,
             caption=(
-                "<b>🧹 Cᴀᴄʜᴇ Cʟᴇᴀʀᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ</b>\n\n"
-                f"🗑 <b>Cʟᴇᴀʀᴇᴅ Cᴀᴄʜᴇ</b> : <code>{cache_before}</code>\n"
-                f"⚡ <b>Cᴜʀʀᴇɴᴛ Cᴀᴄʜᴇ</b> : <code>{len(CACHE)}</code>\n"
-                f"🕒 <b>Pʀᴇᴠɪᴏᴜs Cʟᴇᴀʀ</b> : <code>{last_clear}</code>\n"
-                f"✅ <b>Cᴜʀʀᴇɴᴛ Cʟᴇᴀʀ</b> : <code>{LAST_CACHE_CLEAR}</code>"
+                "**Aɴʏ Fᴇᴇᴅʙᴀᴄᴋ**\n\n"
+                "**- Fᴏᴜɴᴅ A Bᴜɢ?**\n"
+                "**- Hᴀᴠᴇ A Sᴜɢɢᴇsᴛɪᴏɴ?**\n"
+                "**- Nᴇᴇᴅ ʜᴇʟᴘ?**\n\n"
+                "ᴄʟɪᴄᴋ **Contact Owner** Bᴇʟᴏᴡ."
             ),
             reply_markup=keyboard
         )
 
-    except Exception as e:
-        await message.reply_text(f"❌ {e}")
+# ------------------------- #
+# Don't Remove Credit 
+# Owner @Mr_Mohammed_29
+# ------------------------- #
+
+    # ==========================================
+    # CLOSE FEEDBACK
+    # ==========================================
+
+    @bot.on_callback_query(filters.regex("^close_feedback$"))
+    async def close_feedback(client, query):
+
+        await query.answer()
+
+        try:
+            await query.message.delete()
+        except:
+            pass
+
+# ------------------------- #
+# Don't Remove Credit 
+# Owner @Mr_Mohammed_29
+# ------------------------- #
+
+    # ==========================================
+    # DATABASE SIZE
+    # ==========================================
+
+    @bot.on_message(filters.command("dbsize") & filters.private)
+    async def dbsize_cmd(client, message):
+
+        if message.from_user.id != OWNER_ID:
+            return await message.reply_text(
+                "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>",
+                quote=True
+            )
+
+        try:
+            total_users = await users.count_documents({})
+  
+            renamed_users = await users.count_documents(
+                {"rename_count": {"$gt": 0}}
+            )
+
+            total_renames = 0
+
+            async for user in users.find({}, {"rename_count": 1}):
+                total_renames += user.get("rename_count", 0)
+
+            try:
+                stats = await db.command("dbStats")
+                db_used = round(stats["dataSize"] / (1024 * 1024), 2)
+                collections = stats["collections"]
+            except:
+                db_used = 0
+            collections = 0
+
+            cache_entries = len(CACHE)
+
+            text = (
+                "📊 <b>Dᴀᴛᴀʙᴀsᴇ Sᴛᴀᴛɪsᴛɪᴄs</b>\n\n"
+                f"👥 <b>Tᴏᴛᴀʟ Usᴇʀs</b> : <code>{total_users}</code>\n"
+                f"🎬 <b>Usᴇʀs Rᴇɴᴀᴍᴇᴅ</b> : <code>{renamed_users}</code>\n"
+                f"📁 <b>Tᴏᴛᴀʟ Rᴇɴᴀᴍᴇs</b> : <code>{total_renames}</code>\n"
+                f"💾 <b>Dᴀᴛᴀʙᴀsᴇ Usᴇᴅ</b> : <code>{db_used:.2f} MB</code>\n"
+                f"🗂 <b>Cᴏʟʟᴇᴄᴛɪᴏɴs</b> : <code>{collections}</code>\n"
+                f"⚡ <b>Cᴀᴄʜᴇ Eɴᴛʀɪᴇs</b> : <code>{cache_entries}</code>\n"
+                f"🕒 <b>Lᴀsᴛ Uᴘᴅᴀᴛᴇᴅ</b> : "
+                f"<code>{datetime.now().strftime('%d-%m-%Y %I:%M %p')}</code>"
+            )
+
+            keyboard = InlineKeyboardMarkup(
+                [
+                     [
+                        InlineKeyboardButton(
+                            "• ᴄʟᴏsᴇ •",
+                            callback_data="close_dbsize"
+                        )
+                     ]
+                ]
+            )
+
+            await message.reply_photo(
+                photo=DB_IMAGE,
+                caption=text,
+                reply_markup=keyboard
+            )
+
+        except Exception as e:
+            await message.reply_text(str(e))
+
+# ------------------------- #
+# Don't Remove Credit 
+# Owner @Mr_Mohammed_29
+# ------------------------- #
+
+    # ==========================================
+    # CLOSE DBSIZE
+    # ==========================================
+
+    @bot.on_callback_query(filters.regex("^close_dbsize$"))
+    async def close_dbsize(client, query):
+
+        await query.answer()
+
+        try:
+            await query.message.delete()
+        except:
+            pass
+  
+# ------------------------- #
+# Don't Remove Credit 
+# Owner @Mr_Mohammed_29
+# ------------------------- #
+
+    # ==========================================
+    # CLEAR CACHE
+    # ==========================================
+
+    @bot.on_message(filters.command("clearcache") & filters.private)
+    async def clearcache_cmd(client, message):
+
+        if message.from_user.id != OWNER_ID:
+            return await message.reply_text(
+                "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>",
+                quote=True
+            )
+
+        try:
+            global LAST_CACHE_CLEAR
+
+            cache_before = len(CACHE)
+
+            last_clear = LAST_CACHE_CLEAR
+
+            CACHE.clear()
+
+            LAST_CACHE_CLEAR = datetime.now().strftime("%d-%m-%Y %I:%M %p")
+
+            keyboard = InlineKeyboardMarkup(
+                [
+                     [
+                        InlineKeyboardButton(
+                            "• ᴄʟᴏsᴇ •",
+                            callback_data="close_cache"
+                        )
+                     ]
+                ]
+            )
+
+            await message.reply_photo(
+                photo=CACHE_IMAGE,
+                caption=(
+                    "<b>🧹 Cᴀᴄʜᴇ Cʟᴇᴀʀᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ</b>\n\n"
+                    f"🗑 <b>Cʟᴇᴀʀᴇᴅ Cᴀᴄʜᴇ</b> : <code>{cache_before}</code>\n"
+                    f"⚡ <b>Cᴜʀʀᴇɴᴛ Cᴀᴄʜᴇ</b> : <code>{len(CACHE)}</code>\n"
+                    f"🕒 <b>Pʀᴇᴠɪᴏᴜs Cʟᴇᴀʀ</b> : <code>{last_clear}</code>\n"
+                    f"✅ <b>Cᴜʀʀᴇɴᴛ Cʟᴇᴀʀ</b> : <code>{LAST_CACHE_CLEAR}</code>"
+                ),
+                reply_markup=keyboard
+            )
+
+        except Exception as e:
+            await message.reply_text(f"❌ {e}")
         
 # ------------------------- #
 # Don't Remove Credit 
 # Owner @Mr_Mohammed_29
 # ------------------------- #
 
-# ==========================================
-# CLOSE CACHE
-# ==========================================
+    # ==========================================
+    # CLOSE CACHE
+    # ==========================================
 
-@bot.on_callback_query(filters.regex("^close_cache$"))
-async def close_cache(client, query):
+    @bot.on_callback_query(filters.regex("^close_cache$"))
+    async def close_cache(client, query):
 
-    await query.answer()
+        await query.answer()
 
-    try:
-        await query.message.delete()
-    except:
-        pass
+        try:
+            await query.message.delete()
+        except:
+            pass
 
 # ------------------------- #
 # Don't Remove Credit 
 # Owner @Mr_Mohammed_29
 # ------------------------- #
 
-# ==========================================
-# MAINTENANCE COMMAND
-# ==========================================
+    # ==========================================
+    # MAINTENANCE COMMAND
+    # ==========================================
+ 
+    @bot.on_message(filters.command("maintenance") & filters.private)
+    async def maintenance_cmd(client, message):
 
-@bot.on_message(filters.command("maintenance") & filters.private)
-async def maintenance_cmd(client, message):
+        if message.from_user.id != OWNER_ID:
+            return await message.reply_text(
+                "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>"
+            )
 
-    if message.from_user.id != OWNER_ID:
-        return await message.reply_text(
-            "<b>ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!</b>"
-        )
+        if len(message.command) < 2:
 
-    if len(message.command) < 2:
+            status = "🟢 Eɴᴀʙʟᴇᴅ" if MAINTENANCE["enabled"] else "🔴 Dɪsᴀʙʟᴇᴅ"
 
-        status = "🟢 Eɴᴀʙʟᴇᴅ" if MAINTENANCE["enabled"] else "🔴 Dɪsᴀʙʟᴇᴅ"
+            return await message.reply_text(
+                f"""<b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Pᴀɴɴᴇʟ</b>
 
-        return await message.reply_text(
-            f"""<b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Pᴀɴɴᴇʟ</b>
+    <b>• Sᴛᴀᴛᴜs :</b> {status}
+    <b>• Rᴇᴀsᴏɴ :</b> <code>{MAINTENANCE["reason"]}</code>
+ 
+    <b>Usage</b>
+    /maintenance on Bot Updating...
+    /maintenance off"""
+            )
 
-<b>• Sᴛᴀᴛᴜs :</b> {status}
-<b>• Rᴇᴀsᴏɴ :</b> <code>{MAINTENANCE["reason"]}</code>
+        args = message.text.split(maxsplit=2)
+        mode = args[1].lower()
 
-<b>Usage</b>
-/maintenance on Bot Updating...
-/maintenance off"""
-        )
+        if mode == "on":
 
-    args = message.text.split(maxsplit=2)
-    mode = args[1].lower()
+            reason = "No reason provided"
 
-    if mode == "on":
+            if len(args) >= 3:
+                reason = args[2]
 
-        reason = "No reason provided"
+            MAINTENANCE["enabled"] = True
+            MAINTENANCE["reason"] = reason
 
-        if len(args) >= 3:
-            reason = args[2]
+            await message.reply_text(
+                f"""✅ <b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Eɴᴀʙʟᴇᴅ</b>
 
-        MAINTENANCE["enabled"] = True
-        MAINTENANCE["reason"] = reason
+    📝 <b>Rᴇᴀsᴏɴ</b> : <code>{reason}</code>"""
+            )
+
+        elif mode == "off":
+
+            MAINTENANCE["enabled"] = False
+            MAINTENANCE["reason"] = "No reason provided"
+
+            await message.reply_text(
+                "✅ <b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Dɪsᴀʙʟᴇᴅ</b>"
+            )
+
+        else:
+
+            await message.reply_text(
+                "Usage:\n"
+                "/maintenance on Bot Updating...\n"
+                "/maintenance off"
+            )
+
+
+    # ==========================================
+    # BLOCK USERS DURING MAINTENANCE
+    # ==========================================
+
+    @bot.on_message(filters.private, group=-100)
+    async def maintenance_checker(client, message):
+
+        if message.from_user.id == OWNER_ID:
+            return
+
+        if not MAINTENANCE["enabled"]:
+            return
 
         await message.reply_text(
-            f"""✅ <b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Eɴᴀʙʟᴇᴅ</b>
+            f"""<b>Bᴏᴛ Uɴᴅᴇʀ Mᴀɪɴᴛᴇɴᴀɴᴄᴇ</b>
 
-📝 <b>Rᴇᴀsᴏɴ</b> : <code>{reason}</code>"""
+    • Bᴏᴛ Is Uᴘᴅᴀᴛɪɴɢ, Fɪxɪɴɢ Bᴜɢs, Eʀʀᴏʀs ᴀɴᴅ Aᴅᴅɪɴɢ Nᴇᴡ Fᴇᴀᴛᴜʀᴇs
+
+    📝 <b>Rᴇᴀsᴏɴ</b> : <code>{MAINTENANCE["reason"]}</code>"""
         )
 
-    elif mode == "off":
-
-        MAINTENANCE["enabled"] = False
-        MAINTENANCE["reason"] = "No reason provided"
-
-        await message.reply_text(
-            "✅ <b>Mᴀɪɴᴛᴇɴᴀɴᴄᴇ Dɪsᴀʙʟᴇᴅ</b>"
-        )
-
-    else:
-
-        await message.reply_text(
-            "Usage:\n"
-            "/maintenance on Bot Updating...\n"
-            "/maintenance off"
-        )
-
-
-# ==========================================
-# BLOCK USERS DURING MAINTENANCE
-# ==========================================
-
-@bot.on_message(filters.private, group=-100)
-async def maintenance_checker(client, message):
-
-    if message.from_user.id == OWNER_ID:
-        return
-
-    if not MAINTENANCE["enabled"]:
-        return
-
-    await message.reply_text(
-        f"""<b>Bᴏᴛ Uɴᴅᴇʀ Mᴀɪɴᴛᴇɴᴀɴᴄᴇ</b>
-
-• Bᴏᴛ Is Uᴘᴅᴀᴛɪɴɢ, Fɪxɪɴɢ Bᴜɢs, Eʀʀᴏʀs ᴀɴᴅ Aᴅᴅɪɴɢ Nᴇᴡ Fᴇᴀᴛᴜʀᴇs
-
-📝 <b>Rᴇᴀsᴏɴ</b> : <code>{MAINTENANCE["reason"]}</code>"""
-    )
-
-    raise StopPropagation
+        raise StopPropagation
 
 # ------------------------- #
 # Don't Remove Credit 
