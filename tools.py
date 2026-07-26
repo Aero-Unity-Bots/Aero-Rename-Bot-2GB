@@ -897,23 +897,30 @@ def register_tools(bot):
             total_users = await users.count_documents({})
   
             renamed_users = await users.count_documents(
-                {"rename_count": {"$gt": 0}}
+                {"renames": {"$gt": 0}}
             )
 
             total_renames = 0
 
-            async for user in users.find({}, {"rename_count": 1}):
-                total_renames += user.get("rename_count", 0)
+            async for user in users.find({}, {"renames": 1}):
+                total_renames += user.get("renames", 0)
 
             try:
                 stats = await db.command("dbStats")
-                db_used = round(stats["dataSize"] / (1024 * 1024), 2)
-                collections = stats["collections"]
-            except:
-                db_used = 0
-            collections = 0
+                db_used = round(stats.get("dataSize", 0) / (1024 * 1024), 2)
 
-            cache_entries = len(CACHE)
+                collection_names = await db.list_collection_names()
+                collections = len(collection_names)
+
+            except Exception:
+                db_used = 0
+                collections = 0
+
+            cache_entries = (
+                len(CACHE)
+                + len(QR_CACHE)
+                + len(WEATHER_CACHE)
+            )  
 
             text = (
                 "📊 <b>Dᴀᴛᴀʙᴀsᴇ Sᴛᴀᴛɪsᴛɪᴄs</b>\n\n"
@@ -987,11 +994,17 @@ def register_tools(bot):
         try:
             global LAST_CACHE_CLEAR
 
-            cache_before = len(CACHE)
+            cache_before = (
+                len(CACHE)
+                + len(QR_CACHE)
+                + len(WEATHER_CACHE)
+            )
 
             last_clear = LAST_CACHE_CLEAR
 
             CACHE.clear()
+            QR_CACHE.clear()
+            WEATHER_CACHE.clear()
 
             LAST_CACHE_CLEAR = datetime.now().strftime("%d-%m-%Y %I:%M %p")
 
@@ -1010,7 +1023,7 @@ def register_tools(bot):
                 photo=CACHE_IMAGE,
                 caption=(
                     "<b>🧹 Cᴀᴄʜᴇ Cʟᴇᴀʀᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ</b>\n\n"
-                    f"🗑 <b>Cʟᴇᴀʀᴇᴅ Cᴀᴄʜᴇ</b> : <code>{cache_before}</code>\n"
+                    f"⚡ <b>Cᴜʀʀᴇɴᴛ Cᴀᴄʜᴇ</b> : <code>{len(CACHE) + len(QR_CACHE) + len(WEATHER_CACHE)}</code>\n"
                     f"⚡ <b>Cᴜʀʀᴇɴᴛ Cᴀᴄʜᴇ</b> : <code>{len(CACHE)}</code>\n"
                     f"🕒 <b>Pʀᴇᴠɪᴏᴜs Cʟᴇᴀʀ</b> : <code>{last_clear}</code>\n"
                     f"✅ <b>Cᴜʀʀᴇɴᴛ Cʟᴇᴀʀ</b> : <code>{LAST_CACHE_CLEAR}</code>"
