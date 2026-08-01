@@ -47,8 +47,6 @@
 - ⚡ Fast and reliable processing
 - 📜 Bot activity logging
 - 🎊 Alive Bot Checker
-- 🧹 Cache cleaning system
-- 📊 Database statistics (/dbsize)
 - 🛠️ Maintenance mode
 - 💬 Feedback system
 - 🕒 World date & time command
@@ -58,10 +56,7 @@
 - 🎨 AI Image Generator
 - 📡 Auto reconnect system
 - 🔄 Auto retry on failed uploads
-- 🧠 Smart file processing
-- 📂 Duplicate file detection
 - 📌 Permanent thumbnail storage
-- 📝 Auto filename cleanup
 - 🛡️ FloodWait protection
 - 🔐 Secure owner-only admin commands
 - 📡 Render 24/7 deployment ready
@@ -133,8 +128,6 @@ unban - ᴜɴʙᴀɴ ᴜsᴇʀ [Oᴡɴᴇʀ Oɴʟʏ]
 status - ᴄʜᴇᴄᴋ ʙᴏᴛ sᴛᴀᴛᴜs [Oᴡɴᴇʀ Oɴʟʏ]
 logs - ᴠɪᴇᴡ ʙᴏᴛ ʟᴏɢs [Oᴡɴᴇʀ Oɴʟʏ]
 broadcast - sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ᴜsᴇʀs [Oᴡɴᴇʀ Oɴʟʏ]
-dbsize - ᴠɪᴇᴡ ᴅᴀᴛᴀʙᴀsᴇ sɪᴢᴇ & sᴛᴀᴛs [Oᴡɴᴇʀ Oɴʟʏ]
-clearcache - ᴄʟᴇᴀʀ ʙᴏᴛ ᴄᴀᴄʜᴇ [Oᴡɴᴇʀ Oɴʟʏ]
 maintenance - ᴇɴᴀʙʟᴇ / ᴅɪsᴀʙʟᴇ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ [Oᴡɴᴇʀ Oɴʟʏ]
 ```
 
