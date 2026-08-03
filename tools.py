@@ -71,14 +71,14 @@ def register_tools(bot):
             return await message.reply_text(
                 "Usage:\n/tts ʏᴏᴜʀ ᴛᴇxᴛ"
             )
-        text = message.text.split(None, 1)[1]
+        text = message.text.split(None, 1)[1].strip()
         wait = await message.reply_text(
             "🎙 <b>Gᴇɴᴇʀᴀᴛɪɴɢ Vᴏɪᴄᴇ...</b>\n"
             "⏳ Pʟᴇᴀsᴇ ᴡᴀɪᴛ ᴀ sᴇᴄ...",
             parse_mode=ParseMode.HTML
         )
         try:
-            file = f"tts_{message.from_user.id}.mp3"
+            file = f"tts_{uuid.uuid4().hex}.mp3"
             tts = gTTS(
                 text=text,
                 lang="en",
@@ -111,7 +111,6 @@ def register_tools(bot):
                 parse_mode=ParseMode.HTML,
                 reply_markup=buttons
             )
-            os.remove(file)
         except Exception as e:
             try:
                 await wait.edit_text(
@@ -119,6 +118,13 @@ def register_tools(bot):
                 )
             except:
                 pass
+        finally:
+            if os.path.exists(file):
+                try:
+                    os.remove(file)
+                except:
+                    pass
+       
 
     # ---------------- QR CODE ---------------- #
     @bot.on_message(filters.command("qrcode"))
