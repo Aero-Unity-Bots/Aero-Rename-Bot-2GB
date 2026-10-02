@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050505,50:6A00FF,100:00C8FF&height=180&section=header&text=RENAME%20BOT%202GB&fontSize=35&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Developed%20By%20Mohammed&descAlignY=60&descSize=16" width="100%">
+</p>
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=36BCF7F1&width=435&lines=Welcome+To+Rename+Bot+2GB;It+is+Advance+Rename+Bot+2GB;Bot+is+Made+By+Mohammed)](https://git.io/typing-svg)
 
 
@@ -207,16 +211,14 @@ After adding monitor click:
 </details>
 ---
 
-═★═★═★═ **🏆 Credits** ═★═★═★═  
+> [!NOTE] 
 
-ᴅᴏɴ'ᴛ ʀᴇᴍᴏᴠᴇ ᴍʏ ᴄʀᴇᴅɪᴛ...
+> ᴅᴏɴ'ᴛ ʀᴇᴍᴏᴠᴇ ᴍʏ ᴄʀᴇᴅɪᴛ...
+
+---
 
 - Developer: <a href="https://t.me/Mr_Mohammed_29"><b>ᴍᴏʜᴀᴍᴍᴇᴅ</b></a>  
 - Updates: <a href="https://t.me/Aero_Unity"><b>ᴀᴇʀᴏ ᴜɴɪᴛʏ</b></a>  
-
----
-
----
 
 ## Fork and ⭐ this repo 
 <p align="center">
@@ -224,6 +226,12 @@ After adding monitor click:
   <a href="https://github.com/MohammedDev-yt/Rename-Bot-2GB" target="_blank">
   </a>
 </p>
-# 
----
+
+<p align="center">
+  <b>Made with ❤️ by Mohammed</b>
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050505,50:6A00FF,100:00C8FF&height=120&section=footer"/>
+</p>
 
