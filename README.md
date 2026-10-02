@@ -209,7 +209,6 @@ After adding monitor click:
 <br><br>
 ✅ Your bot will stay alive 24/7.
 </details>
----
 
 > [!NOTE] 
 
