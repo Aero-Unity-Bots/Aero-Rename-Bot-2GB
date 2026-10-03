@@ -1,4 +1,3 @@
-
 # ------------------------- #
 # Don't Remove Credit
 # Ask Doubt @AU_Bot_Discussion
@@ -63,7 +62,9 @@ def add_metadata(
         stream = ffmpeg.input(input_file)
         output = ffmpeg.output(stream, output_file, **options)
 
-        ffmpeg.run(output, overwrite_output=True)
+        print("METADATA FFMPEG COMMAND:", " ".join(ffmpeg.compile(output)))
+
+        ffmpeg.run(output, overwrite_output=True, capture_stderr=True)
 
         if not os.path.exists(output_file):
             raise RuntimeError("Output file was not created")
@@ -73,8 +74,25 @@ def add_metadata(
 
         return output_file
 
+    except ffmpeg.Error as e:
+        print("METADATA FFMPEG ERROR:", e)
+
+        if e.stderr:
+            print(
+                "METADATA FFMPEG STDERR:",
+                e.stderr.decode("utf-8", errors="replace")
+            )
+
+        if os.path.exists(output_file):
+            try:
+                os.remove(output_file)
+            except OSError:
+                pass
+
+        raise
+
     except Exception as e:
-        print(f"❌ Metadata processing failed: {e}")
+        print("METADATA ERROR:", repr(e))
 
         if os.path.exists(output_file):
             try:
