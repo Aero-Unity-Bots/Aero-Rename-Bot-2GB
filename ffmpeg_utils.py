@@ -26,19 +26,31 @@ def add_metadata(
             "map": "0",
             "c": "copy",
             "map_metadata": "-1",
+            "format": "matroska",
         }
 
-        # General metadata
+        # -------------------------
+        # Global metadata
+        # -------------------------
+
+        metadata = []
+
         if title:
-            options["metadata"] = f"title={title}"
+            metadata.append(f"title={title}")
 
         if author:
-            options["metadata:g"] = f"author={author}"
+            metadata.append(f"author={author}")
 
         if artist:
-            options["metadata:g"] = f"artist={artist}"
+            metadata.append(f"artist={artist}")
 
+        if metadata:
+            options["metadata"] = metadata
+
+        # -------------------------
         # Track metadata
+        # -------------------------
+
         video_index = 0
         audio_index = 0
         subtitle_index = 0
@@ -47,52 +59,97 @@ def add_metadata(
             stream_type = item.get("codec_type")
 
             if stream_type == "video":
+
                 if video:
-                    options[f"metadata:s:v:{video_index}"] = f"title={video}"
+                    options[
+                        f"metadata:s:v:{video_index}"
+                    ] = f"title={video}"
+
                 video_index += 1
 
             elif stream_type == "audio":
+
                 if audio:
-                    options[f"metadata:s:a:{audio_index}"] = f"title={audio}"
+                    options[
+                        f"metadata:s:a:{audio_index}"
+                    ] = f"title={audio}"
+
                 audio_index += 1
 
             elif stream_type == "subtitle":
+
                 if subtitle:
-                    options[f"metadata:s:s:{subtitle_index}"] = f"title={subtitle}"
+                    options[
+                        f"metadata:s:s:{subtitle_index}"
+                    ] = f"title={subtitle}"
+
                 subtitle_index += 1
+
+        # -------------------------
+        # FFmpeg
+        # -------------------------
 
         stream = ffmpeg.input(input_file)
 
         output = ffmpeg.output(
             stream,
             output_file,
-            format="matroska",
             **options
         )
 
-        print("METADATA COMMAND:", " ".join(ffmpeg.compile(output)))
+        command = ffmpeg.compile(output)
+
+        print(
+            "METADATA COMMAND:",
+            " ".join(command)
+        )
 
         ffmpeg.run(
             output,
             overwrite_output=True,
+            capture_stdout=True,
             capture_stderr=True
         )
 
-        if not os.path.exists(output_file):
-            raise RuntimeError("Output file was not created")
+        # -------------------------
+        # Validate output
+        # -------------------------
 
-        if os.path.getsize(output_file) < 100000:
-            raise RuntimeError("Output file is too small")
+        if not os.path.exists(output_file):
+            raise RuntimeError(
+                "Metadata output file was not created"
+            )
+
+        size = os.path.getsize(output_file)
+
+        if size < 100000:
+            raise RuntimeError(
+                f"Metadata output is too small: {size} bytes"
+            )
+
+        print(
+            f"✅ Metadata processing successful: {size} bytes"
+        )
 
         return output_file
 
     except ffmpeg.Error as e:
-        print("METADATA FFMPEG ERROR:", e)
+
+        print(
+            "❌ METADATA FFMPEG ERROR:",
+            e
+        )
 
         if e.stderr:
             print(
-                "METADATA FFMPEG STDERR:",
-                e.stderr.decode("utf-8", errors="replace")
+                "❌ METADATA FFMPEG STDERR:"
+            )
+
+            print(
+                e.stderr.decode(
+                    "utf-8",
+                    errors="replace"
+                )
             )
 
         if os.path.exists(output_file):
@@ -104,7 +161,11 @@ def add_metadata(
         raise
 
     except Exception as e:
-        print("METADATA ERROR:", repr(e))
+
+        print(
+            "❌ METADATA ERROR:",
+            repr(e)
+        )
 
         if os.path.exists(output_file):
             try:
