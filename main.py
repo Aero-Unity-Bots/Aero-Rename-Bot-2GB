@@ -2511,22 +2511,25 @@ async def cb(_, query: CallbackQuery):
                 user.get("title"),
                 user.get("author"),
                 user.get("artist"),
-                user.get("video")
+                user.get("video"),
+                user.get("audio"),
+                user.get("subtitle")
             ])
 
             if metadata_enabled:
                 final = add_metadata(
                     file_path,
                     output,
-                    user.get("title", ""),
-                    user.get("author", ""),
-                    user.get("artist", ""),
-                    user.get("video", "")
+                    title=user.get("title", ""),
+                    author=user.get("author", ""),
+                    artist=user.get("artist", ""),
+                    video=user.get("video", ""),
+                    audio=user.get("audio", ""),
+                    subtitle=user.get("subtitle", "")
                 )
 
             else:
                 final = file_path
-
 
             if not os.path.exists(final) or os.path.getsize(final) < 100000:
                 final = file_path
