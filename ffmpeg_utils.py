@@ -1,92 +1,92 @@
+
 # ------------------------- #
-# Don't Remove Credit 
-# Ask Doubt @AU_Bot_Discussion 
-# Owner @Mr_Mohammed_29 
+# Don't Remove Credit
+# Ask Doubt @AU_Bot_Discussion
+# Owner @Mr_Mohammed_29
 # ------------------------- #
 
 import ffmpeg
 import os
 
-def add_metadata(input_file, output_file, title, author, artist, video):
 
+def add_metadata(
+    input_file,
+    output_file,
+    title="",
+    author="",
+    artist="",
+    video="",
+    audio="",
+    subtitle=""
+):
     try:
-        # -------- STEP 1: FAST COPY -------- #
+        probe = ffmpeg.probe(input_file)
+        streams = probe.get("streams", [])
+
+        options = {
+            "map": "0",
+            "c": "copy",
+            "map_metadata": "-1",
+        }
+
+        if title:
+            options["metadata"] = title
+
+        if author:
+            options["metadata:g:author"] = author
+
+        if artist:
+            options["metadata:g:artist"] = artist
+
+        video_index = 0
+        audio_index = 0
+        subtitle_index = 0
+
+        for stream_info in streams:
+            stream_type = stream_info.get("codec_type")
+
+            if stream_type == "video":
+                if video:
+                    options[f"metadata:s:v:{video_index}"] = video
+                video_index += 1
+
+            elif stream_type == "audio":
+                if audio:
+                    options[f"metadata:s:a:{audio_index}"] = audio
+                audio_index += 1
+
+            elif stream_type == "subtitle":
+                if subtitle:
+                    options[f"metadata:s:s:{subtitle_index}"] = subtitle
+                subtitle_index += 1
+
         stream = ffmpeg.input(input_file)
+        output = ffmpeg.output(stream, output_file, **options)
 
-        stream = ffmpeg.output(
-            stream,
-            output_file,
+        ffmpeg.run(output, overwrite_output=True)
 
-            # Keep ALL streams exactly as they are
-            vcodec="copy",
-            acodec="copy",
-            map="0",
-
-            # Remove old container metadata
-            map_metadata="-1",
-
-            # Add only requested metadata
-            **{
-                "metadata": f"title={title}",
-                "metadata:g:artist": f"{artist}",
-                "metadata:g:author": f"{author}",
-                "metadata:s:v:0": f"title={video}",
-            },
-
-            # Don't re-encode streams
-            movflags="+faststart",
-        )
-
-        ffmpeg.run(stream, overwrite_output=True)
-
-        # -------- STEP 2: VALIDATE OUTPUT -------- #
         if not os.path.exists(output_file):
-            raise Exception("Output not created")
+            raise RuntimeError("Output file was not created")
 
-        size = os.path.getsize(output_file)
-
-        if size < 100000:
-            raise Exception("Broken file")
+        if os.path.getsize(output_file) < 100000:
+            raise RuntimeError("Output file is too small")
 
         return output_file
 
     except Exception as e:
-        print("⚠️ Cᴏᴘʏ Fᴀɪʟᴇᴅ:", e)
+        print(f"❌ Metadata processing failed: {e}")
 
-        # -------- STEP 3: SAFE FALLBACK -------- #
-        try:
-            stream = ffmpeg.input(input_file)
+        if os.path.exists(output_file):
+            try:
+                os.remove(output_file)
+            except OSError:
+                pass
 
-            stream = ffmpeg.output(
-                stream,
-                output_file,
-
-                # Keep every stream unchanged
-                vcodec="copy",
-                acodec="copy",
-                map="0",
-
-                # Only general metadata
-                **{
-                    "metadata": f"title={title}",
-                    "metadata:g:artist": f"{artist}",
-                    "metadata:g:author": f"{author}",
-                }
-            )
-
-            ffmpeg.run(stream, overwrite_output=True)
-
-            if os.path.exists(output_file):
-                return output_file
-
-        except Exception as e2:
-            print("❌ Fᴀʟʟʙᴀᴄᴋ Fᴀɪʟᴇᴅ:", e2)
-
-        return input_file
+        raise
 
 
 # ------------------------- #
-# Don't Remove Credit 
-# Ask Doubt @AU_Bot_Discussion 
-# Owner @Mr_Mohammed_29 
+# Don't Remove Credit
+# Ask Doubt @AU_Bot_Discussion
+# Owner @Mr_Mohammed_29
 # ------------------------- #
