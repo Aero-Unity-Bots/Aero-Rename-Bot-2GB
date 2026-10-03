@@ -28,43 +28,55 @@ def add_metadata(
             "map_metadata": "-1",
         }
 
+        # General metadata
         if title:
-            options["metadata"] = title
+            options["metadata"] = f"title={title}"
 
         if author:
-            options["metadata:g:author"] = author
+            options["metadata:g"] = f"author={author}"
 
         if artist:
-            options["metadata:g:artist"] = artist
+            options["metadata:g"] = f"artist={artist}"
 
+        # Track metadata
         video_index = 0
         audio_index = 0
         subtitle_index = 0
 
-        for stream_info in streams:
-            stream_type = stream_info.get("codec_type")
+        for item in streams:
+            stream_type = item.get("codec_type")
 
             if stream_type == "video":
                 if video:
-                    options[f"metadata:s:v:{video_index}"] = video
+                    options[f"metadata:s:v:{video_index}"] = f"title={video}"
                 video_index += 1
 
             elif stream_type == "audio":
                 if audio:
-                    options[f"metadata:s:a:{audio_index}"] = audio
+                    options[f"metadata:s:a:{audio_index}"] = f"title={audio}"
                 audio_index += 1
 
             elif stream_type == "subtitle":
                 if subtitle:
-                    options[f"metadata:s:s:{subtitle_index}"] = subtitle
+                    options[f"metadata:s:s:{subtitle_index}"] = f"title={subtitle}"
                 subtitle_index += 1
 
         stream = ffmpeg.input(input_file)
-        output = ffmpeg.output(stream, output_file, **options)
 
-        print("METADATA FFMPEG COMMAND:", " ".join(ffmpeg.compile(output)))
+        output = ffmpeg.output(
+            stream,
+            output_file,
+            format="matroska",
+            **options
+        )
 
-        ffmpeg.run(output, overwrite_output=True, capture_stderr=True)
+        print("METADATA COMMAND:", " ".join(ffmpeg.compile(output)))
+
+        ffmpeg.run(
+            output,
+            overwrite_output=True,
+            capture_stderr=True
+        )
 
         if not os.path.exists(output_file):
             raise RuntimeError("Output file was not created")
