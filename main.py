@@ -2531,8 +2531,11 @@ async def cb(_, query: CallbackQuery):
             else:
                 final = file_path
 
-            if not os.path.exists(final) or os.path.getsize(final) < 100000:
-                final = file_path
+            if not os.path.exists(final):
+                raise RuntimeError("Final output file was not created")
+
+            if os.path.getsize(final) < 100000:
+                raise RuntimeError("Final output file is too small")
 
 # ------------------------- #
 # Don't Remove Credit 
